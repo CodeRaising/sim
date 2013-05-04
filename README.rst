@@ -178,6 +178,11 @@ Now we'll start up the Django server with `manage.py runserver`::
 
 You can then view the site by going to http://localhost:8000 in your browser.
 
+Contributing
+============
+
+We will use the ThinkUp contributor workflow for contributions.
+http://www.thinkupapp.com/docs/contribute/developers/devfromsource.html
 
 Acknowledgements
 ================
