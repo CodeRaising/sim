@@ -77,7 +77,18 @@ virtualenvwrapper):
     /home/<youruser>/sim/sim/
     import sys; new=sys.path[sys.__plen:]; del sys.path[sys.__plen:]; p=getattr(sys,'__egginsert',0); sys.path[p:p]=new; sys.__egginsert = p+len(new)
 
+Mac
+---
 
+Here are some recommendations if you're developing on a Mac.
+
+- Github for Mac_. (nice GUI for managing your git repositories)
+- Postgres.app_.  (the best database wrapped in an easily installable Mac package)
+- Sublime Text 2_. (a nice text editor for Mac)
+
+.. _Sublime Text 2: http://www.sublimetext.com/
+.. _Postgres.app: http://postgresapp.com
+.. _Github for Mac: http://mac.github.com/
 
 Installation of Dependencies
 =============================
@@ -98,20 +109,75 @@ Note: your prompt should change to look like this::
 
     (sim-env)$
 
-Depending on where you are installing dependencies:
-
-In development::    
+Use `local.txt` when developing locally on your computer::    
 
     (sim-env)$ cd sim
     (sim-env)$ pip install -r requirements/local.txt
 
-For production::
+
+Synchronize database
+====================
+
+The first thing we need to do is synchronize the database with the syncdb command::
 
     (sim-env)$ cd sim
-    (sim-env)$ pip install -r requirements.txt
+    (sim-env)$ python manage.py syncdb
+    Syncing...
+    Creating tables ...
+    Creating table auth_permission
+    Creating table auth_group_permissions
+    Creating table auth_group
+    Creating table auth_user_groups
+    Creating table auth_user_user_permissions
+    Creating table auth_user
+    Creating table django_content_type
+    Creating table django_session
+    Creating table django_site
+    Creating table django_admin_log
+    Creating table south_migrationhistory
 
-*note: We install production requirements this way because many Platforms as a
-Services expect a requirements.txt file in the root of projects.*
+    You just installed Django's auth system, which means you don't have any superusers defined.
+    Would you like to create one now? (yes/no): 
+    Username (leave blank to use 'nateaune'): admin
+    Email address: user@domain.com
+    Password: 
+    Password (again): 
+    Superuser created successfully.
+    Installing custom SQL ...
+    Installing indexes ...
+    Installed 0 object(s) from 0 fixture(s)
+
+    Synced:
+     > django.contrib.auth
+     > django.contrib.contenttypes
+     > django.contrib.sessions
+     > django.contrib.sites
+     > django.contrib.messages
+     > django.contrib.staticfiles
+     > django.contrib.admin
+     > south
+     > debug_toolbar
+
+    Not synced (use migrations):
+     - 
+    (use ./manage.py migrate to migrate these)
+
+Migrate the database
+====================
+
+Above, the syncdb command is telling us that we need to run `manage.py migrate` since we're using South to manage our database schema migrations::
+
+    (sim-env)$ python manage.py migrate
+
+Start the Django server
+=======================
+
+Now we'll start up the Django server with `manage.py runserver`::
+
+    (sim-env)$ python manage.py runserver
+
+You can then view the site by going to http://localhost:8000 in your browser.
+
 
 Acknowledgements
 ================
