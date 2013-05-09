@@ -1,26 +1,19 @@
-===============================
-SIM - seed inventory management
-===============================
+========================
+django-twoscoops-project
+========================
 
-A project created at CodeRaising (May 2013).
+A project template for Django 1.5.
 
-To set up the SIM project on your computer, follow these steps:
+To use this project follow these steps:
 
-#. Install system dependencies
 #. Create your working environment
+#. Install Django
+#. Create the new project using the django-two-scoops template
 #. Install additional dependencies
 #. Use the Django admin to create the project
 
-Install system dependencies
-===========================
-
-SIM is built using Django, a Python-based web application framework. In order to use Django, you need to have Python installed on your computer. If you're on a Mac, you already have it installed, but you might need to install XCode to get GCC compiler and make utilities.
-
-If you want to contribute to the project, you will also need to have a Git client installed, which is used to push code changes to Github.
-
-Follow these instructions_ for getting Python and Git installed on your computer. 
-
-.. _instructions: https://openhatch.org/wiki/Django_for_Designers/Laptop_setup
+*note: these instructions show creation of a project called "icecream".  You
+should replace this name with the actual name of your project.*
 
 Working Environment
 ===================
@@ -29,18 +22,13 @@ You have several options in setting up your working environment.  We recommend
 using virtualenv to seperate the dependencies of your project from your system's
 python environment.  If on Linux or Mac OS X, you can also use virtualenvwrapper to help manage multiple virtualenvs across different projects.
 
-To quickly get Virtualenv and virtualenvwrapper installed, check out the virtualenv-burrito_.
-
-.. _virtualenv-burrito: https://github.com/brainsik/virtualenv-burrito
-
 Virtualenv Only
 ---------------
 
-Note: if you used virtualenv-wrapp
 First, make sure you are using virtualenv (http://www.virtualenv.org). Once
 that's installed, create your virtualenv::
 
-    $ virtualenv --distribute sim-env
+    $ virtualenv --distribute icecream
 
 You will also need to ensure that the virtualenv has the project directory
 added to the path. Adding the project directory will allow `django-admin.py` to
@@ -53,10 +41,9 @@ In Linux and Mac OSX, you can install virtualenvwrapper (http://virtualenvwrappe
 which will take care of managing your virtual environments and adding the
 project path to the `site-directory` for you::
 
-    $ mkdir sim
-    $ mkvirtualenv -a sim sim-dev
-    $ cd sim && add2virtualenv `pwd`
-
+    $ mkdir icecream
+    $ mkvirtualenv -a icecream icecream-dev
+    $ cd icecream && add2virtualenv `pwd`
 
 Windows
 ----------
@@ -68,125 +55,50 @@ you will need to add a python pathfile named `_virtualenv_path_extensions.pth`
 to the `site-packages`. If you have been following the book, then your
 virtualenv folder will be something like::
 
-`~/.virtualenvs/sim/lib/python2.7/site-directory/`
+`~/.virtualenvs/icecream/lib/python2.7/site-directory/`
 
 In the pathfile, you will want to include the following code (from
 virtualenvwrapper):
 
     import sys; sys.__plen = len(sys.path)
-    /home/<youruser>/sim/sim/
+    /home/<youruser>/icecream/icecream/
     import sys; new=sys.path[sys.__plen:]; del sys.path[sys.__plen:]; p=getattr(sys,'__egginsert',0); sys.path[p:p]=new; sys.__egginsert = p+len(new)
 
-Mac
----
+Installing Django
+=================
 
-Here are some recommendations if you're developing on a Mac.
+To install Django in the new virtual environment, run the following command::
 
-- Github for Mac_. (nice GUI for managing your git repositories)
-- Postgres.app_.  (the best database wrapped in an easily installable Mac package)
-- Sublime Text 2_. (a nice text editor for Mac)
+    $ pip install django
 
-.. _Sublime Text 2: http://www.sublimetext.com/
-.. _Postgres.app: http://postgresapp.com
-.. _Github for Mac: http://mac.github.com/
+Creating your project
+=====================
+
+To create a new Django project called '**icecream**' using
+django-twoscoops-project, run the following command::
+
+    $ django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/zipball/master --extension=py,rst,html icecream
 
 Installation of Dependencies
 =============================
 
-First check out the code with Git::
+Depending on where you are installing dependencies:
 
-    $ git clone git@github.com:CodeRaising/sim.git
+In development::
 
-Or if you don't have Git installed, you can download a zipfile here::
+    $ pip install -r requirements/local.txt
 
-    https://github.com/CodeRaising/sim/archive/master.zip
+For production::
 
-Activate the virtualenv that you made earlier::
+    $ pip install -r requirements.txt
 
-    $ source /path/to/sim-env
-
-Note: your prompt should change to look like this::
-
-    (sim-env)$
-
-Use `local.txt` when developing locally on your computer::    
-
-    (sim-env)$ cd sim
-    (sim-env)$ pip install -r requirements/local.txt
-
-
-Synchronize database
-====================
-
-The first thing we need to do is synchronize the database with the syncdb command::
-
-    (sim-env)$ cd sim
-    (sim-env)$ python manage.py syncdb
-    Syncing...
-    Creating tables ...
-    Creating table auth_permission
-    Creating table auth_group_permissions
-    Creating table auth_group
-    Creating table auth_user_groups
-    Creating table auth_user_user_permissions
-    Creating table auth_user
-    Creating table django_content_type
-    Creating table django_session
-    Creating table django_site
-    Creating table django_admin_log
-    Creating table south_migrationhistory
-
-    You just installed Django's auth system, which means you don't have any superusers defined.
-    Would you like to create one now? (yes/no): 
-    Username (leave blank to use 'nateaune'): admin
-    Email address: user@domain.com
-    Password: 
-    Password (again): 
-    Superuser created successfully.
-    Installing custom SQL ...
-    Installing indexes ...
-    Installed 0 object(s) from 0 fixture(s)
-
-    Synced:
-     > django.contrib.auth
-     > django.contrib.contenttypes
-     > django.contrib.sessions
-     > django.contrib.sites
-     > django.contrib.messages
-     > django.contrib.staticfiles
-     > django.contrib.admin
-     > south
-     > debug_toolbar
-
-    Not synced (use migrations):
-     - 
-    (use ./manage.py migrate to migrate these)
-
-Migrate the database
-====================
-
-Above, the syncdb command is telling us that we need to run `manage.py migrate` since we're using South to manage our database schema migrations::
-
-    (sim-env)$ python manage.py migrate
-
-Start the Django server
-=======================
-
-Now we'll start up the Django server with `manage.py runserver`::
-
-    (sim-env)$ python manage.py runserver
-
-You can then view the site by going to http://localhost:8000 in your browser.
-
-Contributing
-============
-
-We will use the ThinkUp contributor workflow for contributions.
-http://www.thinkupapp.com/docs/contribute/developers/devfromsource.html
+*note: We install production requirements this way because many Platforms as a
+Services expect a requirements.txt file in the root of projects.*
 
 Acknowledgements
 ================
 
+    - Many thanks to Randall Degges for the inspiration to write the book and django-skel.
     - All of the contributors_ to this project.
 
-.. _contributors: https://github.com/coderaising/sim/blob/master/CONTRIBUTORS.txt
+.. _contributors: https://github.com/twoscoops/django-twoscoops-project/blob/master/CONTRIBUTORS.txt

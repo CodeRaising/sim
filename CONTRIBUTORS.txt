@@ -1,9 +1,14 @@
-"Team Almond"
-- Brian Dant (@briandant)
-- Nate Aune (@natea)
-- Laura Jones (@laurastone)
-- Maria Davydenko (@mdav)
-- Keith Donaldson (@keithdonaldson)
-
-- Audrey Roy (@audreyr) and Daniel Greenfeld (@pydanny) for making the django-twoscoops-project template and all the contributors to that. https://github.com/twoscoops/django-twoscoops-project/blob/master/CONTRIBUTORS.txt
-
+Audrey Roy / @audreyr
+Daniel Greenfeld / @pydanny
+Juan Riaza
+Faris Chebib
+Garry Polley
+@desimone
+Chris Hasenpflug
+Si Feng
+@ducky427
+Benjamin Montgomery
+@mozillazg
+Patti Chen / @pattichen
+Bouke Haarsma / @bouke
+Remco Wendt / @shanx
