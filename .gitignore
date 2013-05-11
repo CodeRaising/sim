@@ -42,3 +42,6 @@ venv
 *~
 *.swp
 *.swo
+
+# MySQL Workbench
+*.mbw*
