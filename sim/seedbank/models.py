@@ -58,7 +58,7 @@ class Supplier(models.Model):
     city = models.CharField(max_length=45, blank=False)
     state = models.USStateField()
     zip_code = models.IntegerField(max_length=10)
-    country = models.CharField(max_length=45, blak=False)
+    country = models.CharField(max_length=45, blank=False)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
     website = models.URLField()
