@@ -109,7 +109,7 @@ STATICFILES_FINDERS = (
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 # Note: This key only used for development and testing.
-SECRET_KEY = r"+u0o-k-fqyi$c(3@q(w$2d9gxkshggu$vhz#h7g%p%s*jcmvdj"
+SECRET_KEY = r"blah"
 ########## END SECRET CONFIGURATION
 
 
@@ -191,6 +191,7 @@ THIRD_PARTY_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'seedbank',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
