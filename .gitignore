@@ -44,4 +44,4 @@ venv
 *.swo
 
 # MySQL Workbench
-*.mbw*
+*.mwb.bak
