@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.core.urlresolvers import reverse
 
 class Location(models.Model):
     """
@@ -10,12 +9,17 @@ class Location(models.Model):
     location_code = models.CharField(max_length=45, blank=False)
     location_type = models.CharField(max_length=45)
 
+    def __unicode__(self):
+        return self.location_name
 
 class Family(models.Model):
     """
     TODO: Description of class
     """
     family = models.CharField(max_length=45, blank=False)
+
+    def __unicode__(self):
+        return self.family
 
 
 class ScientificName(models.Model):
@@ -24,6 +28,8 @@ class ScientificName(models.Model):
     """
     scientific_name = models.CharField(max_length=45, blank=False)
 
+    def __unicode__(self):
+        return self.scientific_name
 
 class Variety(models.Model):
     """
@@ -37,6 +43,8 @@ class Variety(models.Model):
 
     scientific_name = models.ForeignKey(ScientificName)
 
+    def __unicode__(self):
+        return self.variety
 
 class Germination(models.Model):
     """
@@ -46,6 +54,8 @@ class Germination(models.Model):
     germ_date = models.DateField(blank=False)
     germ_method = models.TextField()
 
+    def __unicode__(self):
+        return self.germ_rate
 
 class CommonName(models.Model):
     """
@@ -56,6 +66,8 @@ class CommonName(models.Model):
     language = models.CharField(max_length=45, choices=langs, default="English")
     scientific_name = models.ForeignKey(ScientificName)
 
+    def __unicode__(self):
+        return self.common_name
 
 class SupplierType(models.Model):
     """
@@ -63,6 +75,8 @@ class SupplierType(models.Model):
     """
     supplier_type = models.CharField(max_length=45)
 
+    def __unicode__(self):
+        return self.supplier_type
 
 class Supplier(models.Model):
     """
@@ -86,6 +100,8 @@ class Supplier(models.Model):
     supplier_type = models.ForeignKey(SupplierType)
     primary_seed_bank = models.ForeignKey(Location)
 
+    def __unicode__(self):
+        return self.supplier_name
 
 class Seed(models.Model):
     """
@@ -104,6 +120,9 @@ class Seed(models.Model):
 
     # I think this one is supposed to be here... ?
     supplier = models.ForeignKey(Supplier)
+
+    def __unicode__(self):
+        return self.accession_num
 
     def get_absolute_url(self):
         return reverse('seeds-view', kwargs={'pk': self.id})
