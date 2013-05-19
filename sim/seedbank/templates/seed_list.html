@@ -1,0 +1,11 @@
+<h1>Seeds</h1>
+
+<ul>
+	{% for seed in object_list %}
+	<li><a href="{{ seed.get_absolute_url }}">{{ seed }}</a>
+		(<a href="{% url "seeds-edit" pk=seed.id %}">edit</a>)
+	</li>
+	{% endfor %}
+</ul>
+
+<a href="{% url 'seeds-new' %}">add seed</a>

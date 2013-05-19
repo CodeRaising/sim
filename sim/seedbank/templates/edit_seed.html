@@ -1,0 +1,19 @@
+{% if seed.id %}
+<h1>Edit Seed</h1>
+{% else %}
+<h1>Add Seed</h1>
+{% endif %}
+
+<form action="{{ action }}" method="POST">
+	{% csrf_token %}
+	<ul>
+		{{ form.as_ul }}
+	</ul>
+	<input type="submit" value="Save" />
+</form>
+
+{% if seed.id %}
+<a href="{% url "seeds-delete" pk=seed.id %}">Delete</a>
+{% endif %}
+
+<a href="{% url "seeds-list" %}">Back to list</a>
