@@ -5,14 +5,9 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 admin.autodiscover()
 
-#from seedbank import urls as seedbank_urls
 
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='base.html')),
-
-    # Examples:
-    # url(r'^$', 'sim.views.home', name='home'),
-    # url(r'^sim/', include('sim.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

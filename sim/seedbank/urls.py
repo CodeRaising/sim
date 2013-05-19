@@ -16,5 +16,4 @@ urlpatterns = patterns('',
         name='seeds-view',),
     # url(r'^edit/(?P<pk>\d+)/locations$', views.EditSeedLocationView.as_view(),
     #     name='seeds-edit-locations',),
-
 )
