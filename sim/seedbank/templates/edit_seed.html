@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load bootstrap_tags %}
+
 {% block page_title %}
 {% if seed.id %}
 <h1>Edit Seed</h1>
@@ -13,7 +15,7 @@
 <form action="{{ action }}" method="POST">
 	{% csrf_token %}
 	<ul>
-		{{ form.as_ul }}
+		{{ form|as_bootstrap }}
 	</ul>
 	<input type="submit" value="Save" />
 </form>
