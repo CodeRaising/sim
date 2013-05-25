@@ -1,9 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}
 {% if seed.id %}
 <h1>Edit Seed</h1>
 {% else %}
 <h1>Add Seed</h1>
 {% endif %}
+{% endblock page_title %}
 
+{% block content %}
+	
 <form action="{{ action }}" method="POST">
 	{% csrf_token %}
 	<ul>
@@ -17,3 +23,5 @@
 {% endif %}
 
 <a href="{% url "seeds-list" %}">Back to list</a>
+
+{% endblock content %}
